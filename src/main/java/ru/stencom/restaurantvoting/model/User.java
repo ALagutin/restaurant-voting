@@ -25,10 +25,12 @@ public class User extends AbstractPersistable<Integer> {
     private String email;
 
     @Column(name = "name")
+    @NotEmpty
     @Size(max = 128)
     private String name;
 
     @Column(name = "password")
+    @NotEmpty
     @Size(max = 256)
     private String password;
 
