@@ -9,7 +9,7 @@ spring:
       hibernate:
         format_sql: true
         default_batch_fetch_size: 20
-        jdbc.batch_size: 20
+        id.new_generator_mappings: false
   datasource:
     url: jdbc:h2:mem:voting
     username: sa
