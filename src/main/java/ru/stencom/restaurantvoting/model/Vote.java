@@ -3,7 +3,6 @@ package ru.stencom.restaurantvoting.model;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Vote extends AbstractPersistable<Integer> {
+public class Vote extends BaseEntity {
 
     @Column(name = "date_of_menu", nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     @NotNull
