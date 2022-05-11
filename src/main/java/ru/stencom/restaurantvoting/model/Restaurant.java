@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
-@Table(name = "restaurant")
+@Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"}, name = "restaraunt_uk_name_address")})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,7 +20,7 @@ public class Restaurant extends BaseEntity {
     @NotEmpty
     private String name;
 
-    @Column(name = "address", nullable = false, unique = true)
+    @Column(name = "address", nullable = false)
     @NotEmpty
     private String address;
 
