@@ -1,5 +1,6 @@
 package ru.stencom.restaurantvoting.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,9 +24,4 @@ public class Restaurant extends BaseEntity {
     @Column(name = "address", nullable = false)
     @NotEmpty
     private String address;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<MenuThing> menu;
-
 }

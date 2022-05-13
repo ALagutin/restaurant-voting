@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.Assert;
+import ru.stencom.restaurantvoting.HasId;
 
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public abstract class BaseEntity implements Persistable<Integer> {
+public abstract class BaseEntity implements Persistable<Integer>, HasId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
