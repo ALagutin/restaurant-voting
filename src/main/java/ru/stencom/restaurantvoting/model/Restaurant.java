@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 public class Restaurant extends BaseEntity {
 
     @Column(name = "name", nullable = false)
@@ -24,4 +25,9 @@ public class Restaurant extends BaseEntity {
     @Column(name = "address", nullable = false)
     @NotEmpty
     private String address;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<MenuItem> menu;
 }
