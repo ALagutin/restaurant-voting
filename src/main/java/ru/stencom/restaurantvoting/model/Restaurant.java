@@ -26,8 +26,8 @@ public class Restaurant extends BaseEntity {
     @NotEmpty
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference
     private List<MenuItem> menu;
 }
