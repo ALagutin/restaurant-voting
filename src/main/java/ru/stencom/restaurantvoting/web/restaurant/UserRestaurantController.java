@@ -1,6 +1,5 @@
-package ru.stencom.restaurantvoting.web.restaraunt.restaurant;
+package ru.stencom.restaurantvoting.web.restaurant;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.stencom.restaurantvoting.model.Restaurant;

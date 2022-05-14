@@ -1,4 +1,4 @@
-package ru.stencom.restaurantvoting.web.restaraunt.restaurant;
+package ru.stencom.restaurantvoting.web.restaurant;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
