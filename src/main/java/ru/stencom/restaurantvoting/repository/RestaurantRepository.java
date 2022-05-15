@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ru.stencom.restaurantvoting.model.Restaurant;
+import ru.stencom.restaurantvoting.to.RestaurantTo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,4 +37,8 @@ public interface RestaurantRepository extends BaseRepository<Restaurant> {
     @EntityGraph(attributePaths = {"menu"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT r FROM Restaurant r JOIN FETCH r.menu as m WHERE m.dateMenu = CURRENT_DATE")
     List<Restaurant> getAllWithMenu();
+
+    @Query("SELECT new ru.stencom.restaurantvoting.to.RestaurantTo(r.id, r.name, count(v.id)) FROM Restaurant r JOIN Vote v" +
+            " ON r.id=v.restaurant.id AND v.dateOfMenu=CURRENT_DATE GROUP BY r.id ORDER BY count(v.id) DESC")
+    List<RestaurantTo> getAllWithRating();
 }

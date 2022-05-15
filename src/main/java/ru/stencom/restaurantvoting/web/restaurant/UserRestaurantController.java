@@ -1,8 +1,10 @@
 package ru.stencom.restaurantvoting.web.restaurant;
 
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.stencom.restaurantvoting.model.Restaurant;
+import ru.stencom.restaurantvoting.to.RestaurantTo;
 
 import java.util.List;
 
@@ -30,6 +32,11 @@ public class UserRestaurantController extends AbstractRestaurantController{
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id) {
         return super.get(id);
+    }
+
+    @GetMapping("/by-rating")
+    public List<RestaurantTo> getMostPopularRestaurant() {
+        return repository.getAllWithRating();
     }
 
 }
