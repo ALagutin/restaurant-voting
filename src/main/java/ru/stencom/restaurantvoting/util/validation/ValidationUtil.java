@@ -1,17 +1,13 @@
 package ru.stencom.restaurantvoting.util.validation;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.core.NestedExceptionUtils;
+import org.springframework.lang.NonNull;
 import ru.stencom.restaurantvoting.HasId;
 import ru.stencom.restaurantvoting.error.IllegalRequestDataException;
 
 @UtilityClass
 public class ValidationUtil {
-
-    public static void checkModification(int count, int id) {
-        if (count == 0) {
-            throw new IllegalRequestDataException("Entity with id=" + id + " not found");
-        }
-    }
 
     public static void checkNew(HasId bean) {
         if (!bean.isNew()) {
@@ -25,5 +21,11 @@ public class ValidationUtil {
         } else if (bean.id() != id) {
             throw new IllegalRequestDataException(bean.getClass().getSimpleName() + " must has id=" + id);
         }
+    }
+
+    @NonNull
+    public static Throwable getRootCause(@NonNull Throwable t) {
+        Throwable rootCause = NestedExceptionUtils.getRootCause(t);
+        return rootCause != null ? rootCause : t;
     }
 }
