@@ -4,10 +4,10 @@ VALUES ('User_Alex', 'user_alex@yandex.ru', '{noop}user'),
        ('Admin', 'admin@gmail.com', '{noop}admin');
 
 INSERT INTO USER_ROLE (ROLE, USER_ID)
-VALUES ('ROLE_USER', 1),
-       ('ROLE_USER', 2),
-       ('ROLE_USER', 3),
-       ('ROLE_ADMIN', 3);
+VALUES ('USER', 1),
+       ('USER', 2),
+       ('USER', 3),
+       ('ADMIN', 3);
 
 INSERT INTO RESTAURANT(NAME, ADDRESS)
 VALUES ('Золотая вобла', 'ул. Сущёвский Вал, 9'),
