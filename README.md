@@ -19,3 +19,9 @@ Build a voting system for deciding where to have lunch.
 Each restaurant provides a new menu each day.
 
 -----------------------------
+[REST API documentation](http://localhost:8080/swagger-ui.html)  
+Test credentials:
+```
+Admin: admin@gmail.com / admin
+User:  user_alex@yandex.ru / password
+User:  user_mike@yandex.ru / password
