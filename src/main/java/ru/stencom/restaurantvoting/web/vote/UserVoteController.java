@@ -34,7 +34,7 @@ public class UserVoteController {
 
 
     @PostMapping
-    public ResponseEntity<ru.stencom.restaurantvoting.to.VoteTo> createWithLocation(@AuthenticationPrincipal AuthUser authUser, @RequestParam int restaurantId) {
+    public ResponseEntity<VoteTo> createWithLocation(@AuthenticationPrincipal AuthUser authUser, @RequestParam int restaurantId) {
         int userId = authUser.id();
         log.info("create vote for restaurant id={} user id={}", userId, restaurantId);
         VoteTo created = service.save(userId, restaurantId);

@@ -44,7 +44,6 @@ public class VoteService {
 
         log.info("vote for restaurant with id={} from user with id={}", restaurantId, userId);
         Vote newVote = new Vote(LocalDate.now(), userRepository.getById(userId), restaurantRepository.getById(restaurantId));
-        Vote saved = voteRepository.save(newVote);
         return VoteUtil.createTo(voteRepository.save(newVote));
     }
 
