@@ -22,6 +22,10 @@ spring:
     basePath: /api
     returnBodyOnCreate: true
 
+  cache:
+    cache-names: menus, restaurants
+    caffeine.spec: maximumSize=5000,expireAfterAccess=60s
+
 logging:
   level:
     root: WARN

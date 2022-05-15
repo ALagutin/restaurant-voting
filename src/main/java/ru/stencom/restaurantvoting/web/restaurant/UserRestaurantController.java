@@ -1,6 +1,8 @@
 package ru.stencom.restaurantvoting.web.restaurant;
 
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.stencom.restaurantvoting.model.Restaurant;
@@ -10,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = UserRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@CacheConfig(cacheNames ="restaurants")
 public class UserRestaurantController extends AbstractRestaurantController{
 
     static final String REST_URL = "/api/restaurants";
@@ -25,11 +28,13 @@ public class UserRestaurantController extends AbstractRestaurantController{
     }
 
     @GetMapping
+    @Cacheable
     public List<Restaurant> getAll() {
         return super.getAll();
     }
 
     @GetMapping("/{id}")
+    @Cacheable
     public Restaurant get(@PathVariable int id) {
         return super.get(id);
     }

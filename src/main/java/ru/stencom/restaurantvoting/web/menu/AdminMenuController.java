@@ -1,6 +1,9 @@
 package ru.stencom.restaurantvoting.web.menu;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = AdminMenuController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
+@CacheConfig(cacheNames = "menus")
 public class AdminMenuController extends AbstractMenuController {
 
     static final String REST_URL = "/api/admin/restaurants/{restaurantId}/menus";
@@ -42,12 +46,14 @@ public class AdminMenuController extends AbstractMenuController {
 
     @DeleteMapping("/{menuId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CacheEvict(allEntries = true)
     public void delete(@PathVariable int menuId, @PathVariable int restaurantId) {
         menuRepository.delete(menuId, restaurantId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
+    @CacheEvict(allEntries = true)
     public ResponseEntity<MenuItem> createWithLocation(@Valid @RequestBody MenuItem menuItem, @PathVariable int restaurantId) {
         log.info("create {}", menuItem);
         ValidationUtil.checkNew(menuItem);
@@ -62,6 +68,7 @@ public class AdminMenuController extends AbstractMenuController {
     @PutMapping(value = "/{menuId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
+    @CacheEvict(allEntries = true)
     public void update(@Valid @RequestBody MenuItem menuItem, @PathVariable int menuId, @PathVariable int restaurantId) {
         log.info("update {} for restaurant {}", menuItem, menuId);
         MenuItem updated = menuRepository.get(menuId, restaurantId);
